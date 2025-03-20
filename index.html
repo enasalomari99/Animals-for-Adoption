@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animals Available for Adoption</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+  function showForm() {
+    document.querySelector('.animal-form').style.display = 'block';
+  }
+
+  function addAnimal() {
+    var name = document.getElementById('animalName').value;
+    var imageLink = document.getElementById('animalImage').value;
+
+    if (name && imageLink) {
+      var animalList = document.getElementById('animalList');
+      var listItem = document.createElement('li');
+      
+      var animalImage = document.createElement('img');
+      animalImage.src = imageLink;
+      animalImage.alt = name;
+      
+      var textContainer = document.createElement('div');
+      textContainer.classList.add('text-container');
+      textContainer.textContent = name;
+      
+      listItem.appendChild(textContainer);
+      listItem.appendChild(animalImage);
+      animalList.appendChild(listItem);
+      
+      document.getElementById('animalName').value = '';
+      document.getElementById('animalImage').value = '';
+    }
+  }
+</script>
+</head>
+<body>
+  <h1>Animals Available for Adoption</h1>
+  <button onclick="showForm()">Add New Animal</button>
+  <form class="animal-form">
+    <label for="animalName">Animal Name:</label><br>
+    <input type="text" id="animalName" required><br>
+    
+    <label for="animalImage">Image Link Address:</label><br>
+    <input type="text" id="animalImage" required><br>
+    
+    <button type="button" onclick="addAnimal()">Submit</button>
+  </form>
+  <ul id="animalList"></ul>
+</body>
+</html>
